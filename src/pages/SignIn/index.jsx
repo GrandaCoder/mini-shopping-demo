@@ -1,8 +1,10 @@
+import Layout from "../../components/Layout"
+
 function SignIn(){
     return(
-        <div>
+        <Layout>
             <h1>SignIn</h1>
-        </div>
+        </Layout>
     )
 }
 export default SignIn
