@@ -26,7 +26,8 @@ export const ShoppingProvider = ({ children }) => {
                 changeVisibleProductDetail,
                 isProductOpen,
                 productoToShow,
-                setProductoToShow
+                setProductoToShow,
+                setIsProductOpen
             }}>
             {children}
         </ShoppingContext.Provider>

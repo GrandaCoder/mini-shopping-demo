@@ -10,7 +10,7 @@ const Card = (producto) => {
   }
 
   const showProduct = (dataProduct) => {
-    contexto.changeVisibleProductDetail()
+    contexto.setIsProductOpen(true)
     contexto.setProductoToShow(dataProduct)
   }
   return (
