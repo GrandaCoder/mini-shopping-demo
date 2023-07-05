@@ -4,11 +4,19 @@ import { ShoppingContext } from "../../context"
 const Card = (producto) => {
   const contexto = useContext(ShoppingContext)
 
-  const aumentarContador = () => {
+  const aumentarContador = (evento) => {
+    evento.stopPropagation()
     contexto.setContador(contexto.contador + 1)
   }
+
+  const showProduct = (dataProduct) => {
+    contexto.changeVisibleProductDetail()
+    contexto.setProductoToShow(dataProduct)
+  }
   return (
-    <div className='bg-white cursor-pointer w-56 h-60'>
+    <div
+      onClick={() => { showProduct(producto.producto) }}
+      className='bg-white cursor-pointer w-56 h-60'>
       <figure className='relative mb-2 w-full h-4/5'>
         <span className='absolute bottom-0 left-0 bg-white/60 rounded-lg text-black text-xs m-1 p-1'>{producto.producto.category.name}</span>
         <img className="w-full h-full object-cover rounded-lg" src={producto.producto.images[0]} alt="" />
