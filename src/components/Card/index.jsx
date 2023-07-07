@@ -6,12 +6,21 @@ const Card = (producto) => {
 
   const aumentarContador = (evento) => {
     evento.stopPropagation()
+    addProductsToCart(producto.producto)
     contexto.setContador(contexto.contador + 1)
+    contexto.closeProductDetail()
+    contexto.openCheckoutSideMenu()
   }
+
+  const addProductsToCart = (productData) => {
+    contexto.setCartProducts([productData,...contexto.cartProducts ])
+  }
+
 
   const showProduct = (dataProduct) => {
     contexto.setIsProductOpen(true)
     contexto.setProductoToShow(dataProduct)
+    contexto.closeCheckoutSideMenu()
   }
   return (
     <div

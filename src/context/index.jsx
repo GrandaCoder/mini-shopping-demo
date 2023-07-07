@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
 export const ShoppingContext = createContext()
@@ -10,12 +10,34 @@ export const ShoppingProvider = ({ children }) => {
     //product detail: change visible
     const [isProductOpen, setIsProductOpen] = useState(false)
 
-    //product to show
-    const [productoToShow, setProductoToShow] = useState({})
-
+    const closeProductDetail = () => {
+        setIsProductOpen(false)
+    }
     const changeVisibleProductDetail = () => {
         setIsProductOpen(!isProductOpen)
     }
+
+
+    //product to show
+    const [productoToShow, setProductoToShow] = useState({})
+
+    //almacenamos los productos. 
+    const [cartProducts, setCartProducts] = useState([])
+
+    // useEffect(() => {
+    //     console.log("se han actualizado los productos: ", cartProducts)
+    // }, [cartProducts])
+    
+    //checkout side menu
+    const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(true)
+    const openCheckoutSideMenu = () => {
+        setIsCheckoutSideMenuOpen(true)
+    }
+    const closeCheckoutSideMenu = () => {
+        setIsCheckoutSideMenuOpen(false)
+    }
+
+
 
 
     return (
@@ -27,7 +49,13 @@ export const ShoppingProvider = ({ children }) => {
                 isProductOpen,
                 productoToShow,
                 setProductoToShow,
-                setIsProductOpen
+                setIsProductOpen,
+                cartProducts,
+                setCartProducts,
+                openCheckoutSideMenu,
+                closeCheckoutSideMenu,
+                isCheckoutSideMenuOpen,
+                closeProductDetail
             }}>
             {children}
         </ShoppingContext.Provider>

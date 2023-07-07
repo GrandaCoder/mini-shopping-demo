@@ -27,8 +27,8 @@ function App() {
   return (
     <ShoppingProvider>
       <BrowserRouter>
-        <Navbar />
         <AppRouters />
+        <Navbar />
       </BrowserRouter>
     </ShoppingProvider>
   )
