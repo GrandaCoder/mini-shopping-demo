@@ -1,5 +1,6 @@
 import { useContext } from "react"
 import { ShoppingContext } from "../../context"
+import { CheckIcon, PlusIcon } from "@heroicons/react/24/solid"
 
 const Card = (producto) => {
   const contexto = useContext(ShoppingContext)
@@ -13,7 +14,7 @@ const Card = (producto) => {
   }
 
   const addProductsToCart = (productData) => {
-    contexto.setCartProducts([productData,...contexto.cartProducts ])
+    contexto.setCartProducts([productData, ...contexto.cartProducts])
   }
 
 
@@ -22,6 +23,26 @@ const Card = (producto) => {
     contexto.setProductoToShow(dataProduct)
     contexto.closeCheckoutSideMenu()
   }
+
+  const renderIcon = (id) => {
+    const isInCart = contexto.cartProducts.some(producto => producto.id === id)
+    if (!isInCart) {
+      return (
+        <div className='absolute top-0 right-0 flex items-center justify-center bg-white w-6 h-6 rounded-full m-1 select-none'
+         
+        >
+          <PlusIcon className='w-4 h-4 text-black'  onClick={aumentarContador}/>
+        </div>
+      )
+    } else {
+      return (
+        <div  className='absolute top-0 right-0 flex items-center justify-center bg-black  w-6 h-6 rounded-full m-1 select-none'
+        >
+          <CheckIcon className='w-4 h-4 text-white' onClick={(e)=> e.stopPropagation()}/>
+        </div>
+      )
+    }
+  }
   return (
     <div
       onClick={() => { showProduct(producto.producto) }}
@@ -29,9 +50,7 @@ const Card = (producto) => {
       <figure className='relative mb-2 w-full h-4/5'>
         <span className='absolute bottom-0 left-0 bg-white/60 rounded-lg text-black text-xs m-1 p-1'>{producto.producto.category.name}</span>
         <img className="w-full h-full object-cover rounded-lg" src={producto.producto.images[0]} alt="" />
-        <div className='absolute top-0 right-0 flex items-center justify-center bg-white w-6 h-6 rounded-full m-1'
-          onClick={aumentarContador}
-        >+</div>
+        {renderIcon(producto.producto.id)}
       </figure>
       <p className="flex justify-between">
         <span className="text-sm font-light">{producto.producto.title}</span>
