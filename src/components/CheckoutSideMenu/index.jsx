@@ -2,6 +2,7 @@ import { useContext } from 'react'
 import { XCircleIcon } from '@heroicons/react/24/solid'
 import { ShoppingContext } from '../../context'
 import { OrderCard } from '../OrderCard'
+import { calculateTotalPrice } from '../../utils'
 
 function CheckoutSideMenu() {
     const contexto = useContext(ShoppingContext)
@@ -10,11 +11,10 @@ function CheckoutSideMenu() {
         const cartProducts = contexto.cartProducts.filter(producto => producto.id !== id)
         contexto.setCartProducts(cartProducts)
         console.log(contexto.cartProducts)
-        console.log("clicked")
     }
 
     return (
-        <aside                                                               // agregaer el top-20                   
+        <aside
             className={`${contexto.isCheckoutSideMenuOpen ? 'flex' : 'hidden'} top-20 
             flex-col fixed right-0 bg-white border border-black rounded-lg w-[360px] h-[calc(100vh-80px)]`}>
             <div className="flex justify-between items-center p-6">
@@ -34,6 +34,12 @@ function CheckoutSideMenu() {
                         />
                     ))
                 }
+            </div>
+            <div className='px-6'>
+                <p className='flex justify-between items-center'>
+                    <span className='font-medium'>Total:</span>
+                    <span className='text-xl'>${calculateTotalPrice(contexto.cartProducts)}</span>
+                </p>
             </div>
         </aside>
     )
