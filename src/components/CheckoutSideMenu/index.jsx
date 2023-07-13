@@ -1,4 +1,6 @@
 import { useContext } from 'react'
+import { Link } from 'react-router-dom'
+
 import { XCircleIcon } from '@heroicons/react/24/solid'
 import { ShoppingContext } from '../../context'
 import { OrderCard } from '../OrderCard'
@@ -13,6 +15,17 @@ function CheckoutSideMenu() {
         console.log(contexto.cartProducts)
     }
 
+    const handleCheckout = () => {
+        const orderToAdd = {
+            date: new Date(),
+            products: contexto.cartProducts,
+            totalProducts: contexto.cartProducts.length,
+            totalPrice: calculateTotalPrice(contexto.cartProducts)
+        }
+        contexto.setOrder([...contexto.order, orderToAdd])
+        contexto.setCartProducts([])
+    }
+
     return (
         <aside
             className={`${contexto.isCheckoutSideMenuOpen ? 'flex' : 'hidden'} top-20 
@@ -22,7 +35,7 @@ function CheckoutSideMenu() {
                 <XCircleIcon onClick={contexto.closeCheckoutSideMenu}
                     className='w-6 h-6 text-red-500 cursor-pointer' />
             </div>
-            <div className="p-6 overflow-y-scroll">
+            <div className="p-6 overflow-y-scroll flex-1">
                 {
                     contexto.cartProducts.map(producto => (
                         <OrderCard
@@ -41,6 +54,9 @@ function CheckoutSideMenu() {
                     <span className='text-xl'>${calculateTotalPrice(contexto.cartProducts)}</span>
                 </p>
             </div>
+            <Link to='/orders/last' className='p-6'>
+                <button onClick={handleCheckout} className='bg-blue-500 text-white p-2 rounded-lg w-full'>Checkout</button>
+            </Link>
         </aside>
     )
 }

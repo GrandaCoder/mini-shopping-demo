@@ -2,7 +2,9 @@ import { XCircleIcon } from "@heroicons/react/24/solid"
 
 import PropTypes from 'prop-types';
 
-export const OrderCard = ({ title, price, image,handleDeleteProduct}) => {
+export const OrderCard = ({ title, price, image, handleDeleteProduct }) => {
+    let renderIcon = handleDeleteProduct ? (<XCircleIcon className='w-6 h-6 cursor-pointer' onClick={() => handleDeleteProduct()} />) : (<></>)
+    
     return (
         <div className="flex justify-between items-center mb-3 w-full">
             <div className="flex items-center w-full">
@@ -15,7 +17,7 @@ export const OrderCard = ({ title, price, image,handleDeleteProduct}) => {
             </div>
             <div className="flex items-center" >
                 <p className="text-lg font-medium">{price}</p>
-                <XCircleIcon className='w-6 h-6 cursor-pointer' onClick={() =>  handleDeleteProduct()}/>
+                {renderIcon}
             </div>
         </div>
     )
@@ -25,5 +27,5 @@ OrderCard.propTypes = {
     title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     image: PropTypes.array.isRequired,
-    handleDeleteProduct: PropTypes.func.isRequired,
+    handleDeleteProduct: PropTypes.func
 };
