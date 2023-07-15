@@ -2,13 +2,29 @@ import { useContext } from "react"
 import Layout from "../../components/Layout"
 import { ShoppingContext } from "../../context"
 import { OrderCard } from "../../components/OrderCard"
+import { Link } from "react-router-dom";
+import { ChevronLeftIcon } from "@heroicons/react/24/solid";
 
 function Order() {
     const contexto = useContext(ShoppingContext);
-    const latestOrderProducts = contexto.order?.slice(-1)[0]?.products || [];
+
+    const currentPath = window.location.pathname
+    let index = currentPath.substring(1).split("/")[1];
+    console.log("el index es: ",index)
+
+    if(index === 'last'){
+        index = contexto.order.length - 1
+    }
+
+    const latestOrderProducts = contexto.order?.[index]?.products || [];
     return (
         <Layout>
-            <h1>Order</h1>
+            <div className="flex w-80 items-center justify-center relative mb-5">
+                <Link to="/orders" className="absolute left-0">
+                    <ChevronLeftIcon className="w-6 h-6 text-black cursor-pointer" />
+                </Link>
+                <h1>Order</h1>
+            </div>
             <div className="flex flex-col w-80">
                 {latestOrderProducts.map((producto) => (
                     <OrderCard
