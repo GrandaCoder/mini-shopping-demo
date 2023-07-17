@@ -12,7 +12,6 @@ function CheckoutSideMenu() {
     const handleDeleteProduct = (id) => {
         const cartProducts = contexto.cartProducts.filter(producto => producto.id !== id)
         contexto.setCartProducts(cartProducts)
-        console.log(contexto.cartProducts)
     }
 
     const handleCheckout = () => {

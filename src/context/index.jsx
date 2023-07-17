@@ -41,7 +41,26 @@ export const ShoppingProvider = ({ children }) => {
         setIsCheckoutSideMenuOpen(false)
     }
 
+    //get products 
+    const [products, setProducts] = useState(null)
+    useEffect(() => {
+        fetch('https://api.escuelajs.co/api/v1/products')
+            .then(res => res.json())
+            .then(data => setProducts(data))
+    }, [])
 
+    const [filteredProducts, setFilteredProducts] = useState([])
+
+    const filteredItemsByTitile = (items ,title  ) => {
+        return items?.filter(item => item.title.toLowerCase().includes(title.toLowerCase()))
+    }
+    
+    //serch products by title
+    const [searchByTitle, setSearchByTitle] = useState('')
+
+    useEffect(() => {
+        setFilteredProducts(filteredItemsByTitile(products, searchByTitle))
+    }, [ products, searchByTitle])
 
 
     return (
@@ -61,7 +80,12 @@ export const ShoppingProvider = ({ children }) => {
                 isCheckoutSideMenuOpen,
                 closeProductDetail,
                 order,
-                setOrder
+                setOrder,
+                products,
+                setProducts,
+                searchByTitle,
+                setSearchByTitle,
+                filteredProducts
             }}>
             {children}
         </ShoppingContext.Provider>

@@ -9,11 +9,11 @@ function Orders() {
     return (
         <Layout>
             <div className="flex w-80 items-center justify-center relative">
-                <h1>My Orders</h1>
+                <h1 className="font-medium text-lg">My Orders</h1>
             </div>
             {contexto.order?.map((order, index) => (
-                <Link to={`/orders/${index}`} key={index}>
-                    <OrdersCard totalPrice={order.totalPrice} totalProducts={order.totalProducts} />
+                <Link to={`/orders/${index}`} key={index} className="w-80">
+                    <OrdersCard totalPrice={order.totalPrice} totalProducts={order.totalProducts} date={order.date} />
                 </Link>
             )
             )}  
