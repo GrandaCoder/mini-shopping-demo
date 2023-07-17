@@ -5,26 +5,18 @@ import ProductDetail from "../../components/ProductDetail"
 import { ShoppingContext } from "../../context"
 
 function Home() {
-    // const { products, setSearchByTitle , searchByTitle} = useContext(ShoppingContext)
     const contexto = useContext(ShoppingContext)
     const inputsearch = useRef()
 
-   // let products = (contexto.searchByTitle?.length > 0) ? contexto.filteredProducts : contexto.products
+    let products = (contexto.searchByTitle?.length > 0) ? contexto.filteredProducts : contexto.products
 
     let renderProducts = () => {
-        if(contexto.searchByTitle?.length > 0){
-            return (
-                contexto.filteredProducts?.map(product => (
-                    <Card key={product.id} producto={product} />
-                ))
-
-            )
-        }else{
-            return (
-                contexto.products?.map(product => (
-                    <Card key={product.id} producto={product} />
-                ))
-            )
+        if (products?.length > 0) {
+            return products.map(product => (
+                <Card key={product.id} producto={product} />
+            ));
+        } else {
+            return <h1>No hay productos</h1>;
         }
     }
 
