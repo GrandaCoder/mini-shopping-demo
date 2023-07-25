@@ -27,10 +27,10 @@ export const ShoppingProvider = ({ children }) => {
     //Shopping cart: order
     const [order, setOrder] = useState([])
 
-    useEffect(() => {
-        console.log(order)
-    },[order])
-    
+    // useEffect(() => {
+    //     console.log(order)
+    // }, [order])
+
     //checkout side menu
     const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(true)
     const openCheckoutSideMenu = () => {
@@ -51,16 +51,23 @@ export const ShoppingProvider = ({ children }) => {
 
     const [filteredProducts, setFilteredProducts] = useState([])
 
-    const filteredItemsByTitile = (items ,title  ) => {
+    const filteredItemsByTitile = (items, title) => {
         return items?.filter(item => item.title.toLowerCase().includes(title.toLowerCase()))
     }
-    
+
     //serch products by title
     const [searchByTitle, setSearchByTitle] = useState('')
 
+
     useEffect(() => {
         setFilteredProducts(filteredItemsByTitile(products, searchByTitle))
-    }, [ products, searchByTitle])
+    }, [products, searchByTitle])
+
+    //filtering by category
+    const filterByCategory = (category,products) => {
+        const filtrado = products?.filter(item => item.category.name === category)
+        return filtrado
+    }
 
 
     return (
@@ -85,7 +92,8 @@ export const ShoppingProvider = ({ children }) => {
                 setProducts,
                 searchByTitle,
                 setSearchByTitle,
-                filteredProducts
+                filteredProducts,
+                filterByCategory
             }}>
             {children}
         </ShoppingContext.Provider>
