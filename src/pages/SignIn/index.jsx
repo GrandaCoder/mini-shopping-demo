@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom"
 import Layout from "../../components/Layout"
 
 function SignIn() {
@@ -18,7 +19,10 @@ function SignIn() {
                     <button className="my-5 w-full p-3 bg-black text-white rounded-lg cursor-pointer">Log in</button>
                 </form>
                 <p className=" mb-2 text-center underline cursor-pointer">¿olvíaste tu contraseña?</p>
-                <button className=" w-full p-3 bg-gray-400 text-white rounded-lg cursor-pointer">Registrarse</button>
+
+                <NavLink to="/sign-up">
+                    <button className=" w-full p-3 bg-gray-400 text-white rounded-lg cursor-pointer">Registrarse</button>
+                </NavLink>
             </div>
         </Layout>
     )
