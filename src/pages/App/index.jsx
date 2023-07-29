@@ -10,6 +10,7 @@ import NotFound from '../NotFound'
 import Navbar from '../../components/Navbar'
 
 import './App.css'
+import { Signup } from '../Sign-up'
 
 const AppRouters = () => {
   let routes = useRoutes([
@@ -21,6 +22,7 @@ const AppRouters = () => {
     { path: '/orders/last', element: <Order />, },
     { path: '/orders/:orderId', element: <Order />, },
     { path: '/account', element: <Account />, },
+    { path: '/sign-up', element: <Signup />, },
     { path: '*', element: <NotFound />, }
   ])
   return routes
