@@ -4,6 +4,15 @@ import PropTypes from "prop-types";
 export const ShoppingContext = createContext()
 
 export const ShoppingProvider = ({ children }) => {
+
+    const usuarios = localStorage.getItem("usuarios")
+    if (!usuarios) {
+        localStorage.setItem("usuarios", JSON.stringify([]))
+    }
+
+    // para controlar queinformacion mostrar si el usuario esta online
+    const [online, setOnline] = useState(false)
+    
     //shopping cart: inrement quantity
     const [contador, setContador] = useState(0)
 
@@ -32,7 +41,7 @@ export const ShoppingProvider = ({ children }) => {
     // }, [order])
 
     //checkout side menu
-    const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(true)
+    const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false)
     const openCheckoutSideMenu = () => {
         setIsCheckoutSideMenuOpen(true)
     }
@@ -93,7 +102,9 @@ export const ShoppingProvider = ({ children }) => {
                 searchByTitle,
                 setSearchByTitle,
                 filteredProducts,
-                filterByCategory
+                filterByCategory,
+                online,
+                setOnline
             }}>
             {children}
         </ShoppingContext.Provider>

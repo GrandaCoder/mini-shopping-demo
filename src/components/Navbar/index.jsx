@@ -6,6 +6,15 @@ import { ShoppingContext } from '../../context';
 
 const Navbar = () => {
     const contexto = useContext(ShoppingContext)
+
+    const exitUser = () => {
+        const usuarios = JSON.parse(localStorage.getItem('usuarios'))
+        const usuario = usuarios.find(usuario => usuario.online === true)
+        usuario.online = false
+        contexto.setOnline(false)
+        localStorage.setItem('usuarios', JSON.stringify(usuarios))
+    }
+
     const activeStyle = 'underline underline-offset-4';
     return (
         <nav className='flex justify-between top-0 items-center p-2 fixed z-10 w-full py-5 text-sm px-8 font-light bg-white'>
@@ -62,32 +71,52 @@ const Navbar = () => {
             </ul>
             {/* lado derecho */}
             <ul className='flex items-center gap-3'>
-                <li className='text-black/50'>
-                    juan@mail.com
-                </li>
-                <li>
-                    <NavLink to="/orders"
-                        className={({ isActive }) => isActive ? activeStyle : undefined}
-                    >
-                        My orders
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to="/account"
-                        className={({ isActive }) => isActive ? activeStyle : undefined}
-                    >
-                        My Account
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to="/signin"
-                        className={({ isActive }) => isActive ? activeStyle : undefined}
-                    >
-                        Sign in
-                    </NavLink>
-                </li>
+                {
+                    contexto.online &&
+                    <li className='text-black/50'>
+                        juan@mail.com
+                    </li>
+                }
+                {
+                    contexto.online &&
+                    <li>
+                        <NavLink to="/orders"
+                            className={({ isActive }) => isActive ? activeStyle : undefined}>
+                            My orders
+                        </NavLink>
+                    </li>
+                }
+                {
+                    contexto.online &&
+                    <li>
+                        <NavLink to="/account"
+                            className={({ isActive }) => isActive ? activeStyle : undefined}>
+                            My Account
+                        </NavLink>
+                    </li>
+                }
+                {
+                    (contexto.online) ?
+                    <li>
+                        <NavLink to="/signin"
+                            className={({ isActive }) => isActive ? activeStyle : undefined}
+                            onClick={exitUser}
+                        >
+                           Sign Out
+                        </NavLink>
+                    </li> : 
+                    <li>
+                        <NavLink to="/signin"
+                            className={({ isActive }) => isActive ? activeStyle : undefined}
+                        >
+                            Sign in
+                        </NavLink>
+                    </li>
+
+                }
+
                 <li className='flex items-center gap-1'>
-                    <ShoppingBagIcon className='w-6 h-6 text-green-500'/> {contexto.cartProducts.length}
+                    <ShoppingBagIcon className='w-6 h-6 text-green-500' /> {contexto.cartProducts.length}
                 </li>
             </ul>
         </nav>
