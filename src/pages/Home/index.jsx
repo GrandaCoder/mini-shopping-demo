@@ -42,9 +42,6 @@ function Home() {
 
     return (
         <Layout>
-            <div>
-                <h1 className="text-2xl">Home</h1>
-            </div>
             <input
                 ref={inputsearch}
                 className="w-80 rounded-lg p-2 m-4 border border-black focus:outline-none"

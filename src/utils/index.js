@@ -7,3 +7,8 @@
 export const calculateTotalPrice = (products) => {
     return products.reduce((total, product) => total + product.price, 0)
 }
+
+//get current user 
+export const getCurrentUser = () => {
+    return JSON.parse(localStorage.getItem("usuarios")).find(usuario => usuario.online === true)    
+}
