@@ -7,21 +7,19 @@ import { useParams } from "react-router-dom"
 
 function Home() {
     const contexto = useContext(ShoppingContext)
-    const inputsearch = useRef() 
-
+    const inputsearch = useRef()
+    let products = (contexto.searchByTitle?.length > 0) ? contexto.filteredProducts : contexto.products
+    const { category } = useParams()
 
     useEffect(() => {
         return () => {
             contexto.setSearchByTitle('')
         };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    let products = (contexto.searchByTitle?.length > 0) ? contexto.filteredProducts : contexto.products
-    const {category} = useParams()
-
-    if(category){
-        products = contexto.filterByCategory(category,products)
+    if (category) {
+        products = contexto.filterByCategory(category, products)
     }
 
     let renderProducts = () => {
@@ -49,9 +47,7 @@ function Home() {
                 onChange={handleOnChange} />
 
             <div className="grid grid-cols-4 gap-4 w-full max-w-screen-lg">
-                {
-                    renderProducts()
-                }
+                {renderProducts()}
             </div>
             <ProductDetail />
         </Layout>

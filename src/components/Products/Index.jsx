@@ -8,8 +8,6 @@ function ProductsRender({ products }) {
     const contexto = useContext(ShoppingContext)
     const inputsearch = useRef()
 
-    // let products = contexto.filterByCategory('Clothes')
-
     let renderProducts = () => {
         if (products?.length > 0) {
             return products.map(product => (
@@ -30,9 +28,7 @@ function ProductsRender({ products }) {
                 onChange={()=> contexto.setSearchByTitle(inputsearch.current.value)} />
 
             <div className="grid grid-cols-4 gap-4 w-full max-w-screen-lg">
-                {
-                    renderProducts()
-                }
+                {renderProducts()}
             </div>
         </div>
         

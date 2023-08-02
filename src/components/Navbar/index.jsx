@@ -1,18 +1,16 @@
 import { NavLink } from 'react-router-dom'
 import { useContext } from 'react';
 import { ShoppingBagIcon } from '@heroicons/react/24/solid'
-
 import { ShoppingContext } from '../../context';
+
+import { exitCurrentUser, getCurrentUser } from '../../utils';
 
 const Navbar = () => {
     const contexto = useContext(ShoppingContext)
+    const currentUser = getCurrentUser()
 
-    const exitUser = () => {
-        const usuarios = JSON.parse(localStorage.getItem('usuarios'))
-        const usuario = usuarios.find(usuario => usuario.online === true)
-        usuario.online = false
-        contexto.setOnline(false)
-        localStorage.setItem('usuarios', JSON.stringify(usuarios))
+    const handleExitUser = () => {
+        exitCurrentUser(contexto)
     }
 
     const activeStyle = 'underline underline-offset-4';
@@ -54,13 +52,6 @@ const Navbar = () => {
                         Shoes
                     </NavLink>
                 </li>
-                {/* <li>
-                    <NavLink to="/home/Toys"
-                        className={({ isActive }) => isActive ? activeStyle : undefined}
-                    >
-                        Toys
-                    </NavLink>
-                </li> */}
                 <li>
                     <NavLink to="/home/Others"
                         className={({ isActive }) => isActive ? activeStyle : undefined}
@@ -74,7 +65,7 @@ const Navbar = () => {
                 {
                     contexto.online &&
                     <li className='text-black/50'>
-                        juan@mail.com
+                        {currentUser?.email}
                     </li>
                 }
                 {
@@ -100,7 +91,7 @@ const Navbar = () => {
                     <li>
                         <NavLink to="/signin"
                             className={({ isActive }) => isActive ? activeStyle : undefined}
-                            onClick={exitUser}
+                            onClick={handleExitUser}
                         >
                            Sign Out
                         </NavLink>
@@ -116,7 +107,7 @@ const Navbar = () => {
                 }
 
                 <li className='flex items-center gap-1'>
-                    <ShoppingBagIcon className='w-6 h-6 text-green-500' /> {contexto.cartProducts.length}
+                    <ShoppingBagIcon className='w-6 h-6 text-green-500 cursor-pointer' onClick={() => contexto.openCheckoutSideMenu()}/> {contexto.cartProducts.length}
                 </li>
             </ul>
         </nav>

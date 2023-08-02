@@ -17,9 +17,10 @@ export const Signup = () => {
 
     const checkUser = (e) => {
         e.preventDefault();
-        const { value: name } = inputName.current;
-        const { value: email } = inputEmail.current;
-        const { value: password } = inputPassword.current;
+
+        const name = inputName.current.value;
+        const email = inputEmail.current.value;
+        const password = inputPassword.current.value;
 
         const newUser = new User(name, email, password);
         const isExistingUser = findUser(newUser);
@@ -28,6 +29,7 @@ export const Signup = () => {
             alert('El correo ya se encuentra registrado');
             return;
         }
+
         registerUser(newUser, contexto);
         navigate('/');
     };

@@ -13,6 +13,14 @@ export const getCurrentUser = () => {
     return JSON.parse(localStorage.getItem("usuarios")).find(usuario => usuario.online === true)
 }
 
+export const exitCurrentUser = (contexto) => {
+    const usuarios = getAllUsers()
+    const usuario = usuarios.find(usuario => usuario.online === true)
+    usuario.online = false
+    localStorage.setItem("usuarios", JSON.stringify(usuarios))
+    contexto.setOnline(false)
+}
+
 export const getAllUsers = () => {
     return JSON.parse(localStorage.getItem("usuarios"))
 }
