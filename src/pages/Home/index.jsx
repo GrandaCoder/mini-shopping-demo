@@ -12,7 +12,6 @@ function Home() {
 
     useEffect(() => {
         return () => {
-            //se limpia el inputsearch cada que se renderiza el componente
             contexto.setSearchByTitle('')
         };
     // eslint-disable-next-line react-hooks/exhaustive-deps
