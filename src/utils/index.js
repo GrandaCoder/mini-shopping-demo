@@ -23,8 +23,16 @@ export const authenticateUser = ({ email, password }) => {
     return user
 }
 
-export const findUserByEmail = (user) => {
+export const findUser = (user) => {
     return JSON.parse(localStorage.getItem("usuarios")).find(usuario => usuario.email === user.email)
+}
+
+export const registerUser = (newUser, contexto) => {
+    const usuarios = getAllUsers()
+    usuarios.push(newUser)
+    localStorage.setItem('usuarios', JSON.stringify(usuarios))
+    contexto.setOnline(true)
+
 }
 
 export const setOnlineUser = (user, contexto) => {

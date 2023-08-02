@@ -1,35 +1,36 @@
 import { useRef, useContext } from 'react'
-import { useNavigate , NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import Layout from '../../components/Layout'
 import { ArrowUturnLeftIcon } from '@heroicons/react/24/solid'
 import { User } from '../../models/user.class'
 import { ShoppingContext } from '../../context'
+import { findUser, registerUser } from '../../utils'
+
 
 export const Signup = () => {
     const contexto = useContext(ShoppingContext)
     const navigate = useNavigate()
 
-
     const inputName = useRef()
     const inputEmail = useRef()
     const inputPassword = useRef()
 
-    const registrarUsuario = (e) => {
-        e.preventDefault()
-        const usarioNuevo = new User(inputName.current.value, inputEmail.current.value, inputPassword.current.value)
-        const usuarios = JSON.parse(localStorage.getItem('usuarios'))
-        const alreadyExist  = usuarios.find(usuario => usuario.email === usarioNuevo.email)
-        
-        if (alreadyExist) {
-            alert('El correo ya se encontra registrado')
-            return
-        }
+    const checkUser = (e) => {
+        e.preventDefault();
+        const { value: name } = inputName.current;
+        const { value: email } = inputEmail.current;
+        const { value: password } = inputPassword.current;
 
-        usuarios.push(usarioNuevo)
-        localStorage.setItem('usuarios', JSON.stringify(usuarios))
-        contexto.setOnline(true)
-        navigate('/')
-    }
+        const newUser = new User(name, email, password);
+        const isExistingUser = findUser(newUser);
+
+        if (isExistingUser) {
+            alert('El correo ya se encuentra registrado');
+            return;
+        }
+        registerUser(newUser, contexto);
+        navigate('/');
+    };
 
     return (
         <Layout>
@@ -38,7 +39,7 @@ export const Signup = () => {
                 <NavLink to="/signin">
                     <ArrowUturnLeftIcon className='w-6 h-6 text-base cursor-pointer' />
                 </NavLink>
-                <form action="" className="flex flex-col my-4 py-3 " onSubmit={(e) => registrarUsuario(e)} >
+                <form action="" className="flex flex-col my-4 py-3 " onSubmit={(e) => checkUser(e)} >
                     <div className="mb-3 w-full flex flex-col ">
                         <label className='mb-2' htmlFor="name">Nombre:</label>
                         <input ref={inputName} className="w-full p-3 border border-black rounded-lg" type="text" id="name" placeholder="Your name" required />
