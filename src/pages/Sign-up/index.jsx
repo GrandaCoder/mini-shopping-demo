@@ -18,11 +18,16 @@ export const Signup = () => {
         e.preventDefault()
         const usarioNuevo = new User(inputName.current.value, inputEmail.current.value, inputPassword.current.value)
         const usuarios = JSON.parse(localStorage.getItem('usuarios'))
+        const alreadyExist  = usuarios.find(usuario => usuario.email === usarioNuevo.email)
+        
+        if (alreadyExist) {
+            alert('El correo ya se encontra registrado')
+            return
+        }
+
         usuarios.push(usarioNuevo)
         localStorage.setItem('usuarios', JSON.stringify(usuarios))
         contexto.setOnline(true)
-
-        // redirecionar a /home
         navigate('/')
     }
 

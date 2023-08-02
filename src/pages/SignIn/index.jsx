@@ -25,7 +25,7 @@ function SignIn() {
             localStorage.setItem("usuarios", JSON.stringify(usuarios))
             navigate("/")
         }else{
-            console.log("no existe")
+            alert("Por favor verifique su email y contraseña")
         }
     }
 
