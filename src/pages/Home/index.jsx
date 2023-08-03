@@ -37,6 +37,11 @@ function Home() {
         contexto.setSearchByTitle(valorBuscado)
     }
 
+    // const styleWithCheckout = 'w-[calc(100%-360px)] sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
+    // const styleWhitoutCheckout = 'w-full sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 '
+
+    const styleWithCheckout = 'w-[calc(100%-360px)] '
+    const styleWhitoutCheckout = 'w-full '
     return (
         <Layout>
             <input
@@ -47,7 +52,7 @@ function Home() {
                 onChange={handleOnChange} />
 
             {/* h-[calc(100vh-80px)] , max-w-screen-lg*/}
-            <div className="grid grid-cols-4 gap-4  w-[calc(100%-360px)]   border-2 border-solid border-red-500">
+            <div className={`${(contexto.isCheckoutSideMenuOpen || contexto.isProductOpen) ? styleWithCheckout : styleWhitoutCheckout}flex flex-wrap justify-center items-center gap-6 border-2 border-solid border-red-500 p-5`}>
                 {renderProducts()}
             </div>
             <ProductDetail />
