@@ -6,8 +6,9 @@ const Layout = ({ children }) => {
         children: PropTypes.node
     }
 
+    // items center
     return (
-        <div className='flex flex-col mt-20 items-center'>
+        <div className='flex flex-col mt-20 '>
             {children}
             <CheckoutSideMenu />
         </div>

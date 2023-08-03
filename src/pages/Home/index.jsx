@@ -46,7 +46,8 @@ function Home() {
                 placeholder="Search"
                 onChange={handleOnChange} />
 
-            <div className="grid grid-cols-4 gap-4 w-full max-w-screen-lg">
+            {/* h-[calc(100vh-80px)] , max-w-screen-lg*/}
+            <div className="grid grid-cols-4 gap-4  w-[calc(100%-360px)]   border-2 border-solid border-red-500">
                 {renderProducts()}
             </div>
             <ProductDetail />
