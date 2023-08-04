@@ -6,7 +6,7 @@ function ProductDetail() {
   const contexto = useContext(ShoppingContext)
   return (
     <aside
-    className={`${contexto.isProductOpen ? 'block' : 'hidden'} flex flex-col fixed right-0 bg-white border border-black rounded-lg w-[360px] h-[calc(100vh-80px)]`}>
+    className={`${contexto.isProductOpen ? 'block' : 'hidden'} flex flex-col fixed right-0 bg-white border border-black rounded-lg w-full md:w-[360px] h-[calc(100vh-80px)]`}>
       <div className="flex justify-between items-center p-6">
         <h1>Product Detail</h1>
         <XCircleIcon onClick={contexto.changeVisibleProductDetail} className='w-6 h-6 text-red-500 cursor-pointer'/>

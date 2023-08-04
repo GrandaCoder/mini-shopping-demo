@@ -28,7 +28,7 @@ function CheckoutSideMenu() {
     return (
         <aside
             className={`${contexto.isCheckoutSideMenuOpen ? 'flex' : 'hidden'} top-20 
-            flex-col fixed right-0 bg-white border border-black rounded-lg w-[360px] h-[calc(100vh-80px)]`}>
+            flex-col fixed right-0 bg-white border border-black rounded-lg w-full md:w-[360px] h-[calc(100vh-80px)]`}>
             <div className="flex justify-between items-center p-6">
                 <h1>My order</h1>
                 <XCircleIcon onClick={contexto.closeCheckoutSideMenu}
