@@ -44,14 +44,17 @@ function Home() {
     const styleWhitoutCheckout = 'w-full '
     return (
         <Layout>
-            <div className={`${(contexto.isCheckoutSideMenuOpen || contexto.isProductOpen) ? styleWithCheckout : styleWhitoutCheckout}flex flex-wrap justify-center items-center gap-6 border-2 border-solid border-red-500 p-5`}>
-                <input
-                    ref={inputsearch}
-                    className="w-full rounded-lg p-2 my-4 border border-black focus:outline-none"
-                    type="text"
-                    placeholder="Search"
-                    onChange={handleOnChange}
-                />
+            <div className={`${(contexto.isCheckoutSideMenuOpen || contexto.isProductOpen) ? styleWithCheckout : styleWhitoutCheckout}flex flex-wrap justify-center items-center gap-6  px-5`}>
+                <div className="w-full flex items-center justify-center">
+                    <input
+                        ref={inputsearch}
+                        className="w-6/12  p-2 my-4 border border-gray-400 focus:outline-none rounded-s-lg"
+                        type="text"
+                        placeholder="Search"
+                        onChange={handleOnChange}
+                    />
+                    <button className="bg-green-500 border border-green-500  text-white font-bold p-2 px-4 rounded-e-lg">Buscar</button>
+                </div>
                 {renderProducts()}
             </div>
             <ProductDetail />
