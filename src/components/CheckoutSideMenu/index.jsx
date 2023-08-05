@@ -15,14 +15,17 @@ function CheckoutSideMenu() {
     }
 
     const handleCheckout = () => {
-        const orderToAdd = {
-            date: new Date(),
-            products: contexto.cartProducts,
-            totalProducts: contexto.cartProducts.length,
-            totalPrice: calculateTotalPrice(contexto.cartProducts)
+        if(contexto.cartProducts.length > 0) {
+            contexto.closeCheckoutSideMenu()
+            const orderToAdd = {
+                date: new Date(),
+                products: contexto.cartProducts,
+                totalProducts: contexto.cartProducts.length,
+                totalPrice: calculateTotalPrice(contexto.cartProducts)
+            }
+            contexto.setOrder([...contexto.order, orderToAdd])
+            contexto.setCartProducts([])
         }
-        contexto.setOrder([...contexto.order, orderToAdd])
-        contexto.setCartProducts([])
     }
 
     return (
