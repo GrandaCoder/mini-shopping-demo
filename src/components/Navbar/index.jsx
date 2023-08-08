@@ -21,6 +21,7 @@ const Navbar = () => {
 
     const handleExitUser = () => {
         exitCurrentUser(contexto)
+        setIsMenuOpen(false)
     }
     const activeStyle = 'underline underline-offset-4 ';
 
@@ -45,20 +46,26 @@ const Navbar = () => {
             '>
 
             {/* menu Hamburguesa */}
-            <button>
-                <Bars3Icon className={`${isTabletOrMobile ? 'w-6 h-6' : 'hidden'}`} onClick={toggleMenu} />
-            </button>
+            <div className='flex justify-between max-md:w-full'> 
+                <button>
+                    <Bars3Icon className={`${isTabletOrMobile ? 'w-6 h-6' : 'hidden'}`} onClick={toggleMenu} />
+                </button>
+                <NavLink to="/"><p className='text-2xl font-bold'>Shopi</p></NavLink>
+               
+            </div>
             {/* flex items-center gap-3 flex-row */}
             <ul className={`${isTabletOrMobile ? `${isMenuOpen ? 'flex' : 'hidden'} flex-col items-srat gap-3 w-full mb-10` : 'flex items-center gap-3 flex-row'}`}>
-                <li className='font-semibold'>
+                {/* <li className='font-semibold'>
                     <NavLink
+                        onClick={() => setIsMenuOpen(false)}
                         to="/"
                     >
                         Shopi
                     </NavLink>
-                </li>
+                </li> */}
                 <li>
                     <NavLink to="/"
+                        onClick={() => setIsMenuOpen(false)}
                         className={({ isActive }) => isActive ? activeStyle : undefined}
                     >
                         All
@@ -66,6 +73,7 @@ const Navbar = () => {
                 </li>
                 <li>
                     <NavLink to="/home/Clothes"
+                        onClick={() => setIsMenuOpen(false)}
                         className={({ isActive }) => isActive ? activeStyle : undefined}
                     >
                         Clothes
@@ -73,6 +81,7 @@ const Navbar = () => {
                 </li>
                 <li>
                     <NavLink to="/home/Electronics"
+                        onClick={() => setIsMenuOpen(false)}
                         className={({ isActive }) => isActive ? activeStyle : undefined}
                     >
                         Electronics
@@ -80,6 +89,7 @@ const Navbar = () => {
                 </li>
                 <li>
                     <NavLink to="/home/Shoes"
+                        onClick={() => setIsMenuOpen(false)}
                         className={({ isActive }) => isActive ? activeStyle : undefined}
                     >
                         Shoes
@@ -87,6 +97,7 @@ const Navbar = () => {
                 </li>
                 <li>
                     <NavLink to="/home/Others"
+                        onClick={() => setIsMenuOpen(false)}
                         className={({ isActive }) => isActive ? activeStyle : undefined}
                     >
                         Others
@@ -106,6 +117,7 @@ const Navbar = () => {
                     contexto.online &&
                     <li>
                         <NavLink to="/orders"
+                            onClick={() => setIsMenuOpen(false)}
                             className={({ isActive }) => isActive ? activeStyle : undefined}>
                             My orders
                         </NavLink>
@@ -115,6 +127,7 @@ const Navbar = () => {
                     contexto.online &&
                     <li>
                         <NavLink to="/account"
+                            onClick={() => setIsMenuOpen(false)}
                             className={({ isActive }) => isActive ? activeStyle : undefined}>
                             My Account
                         </NavLink>
@@ -132,6 +145,7 @@ const Navbar = () => {
                         </li> :
                         <li>
                             <NavLink to="/signin"
+                                onClick={() => setIsMenuOpen(false)}
                                 className={({ isActive }) => isActive ? activeStyle : undefined}
                             >
                                 Sign in
