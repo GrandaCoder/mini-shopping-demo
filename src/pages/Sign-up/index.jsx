@@ -37,7 +37,7 @@ export const Signup = () => {
     return (
         <Layout>
             <div className="flex items-center justify-center ">
-                <div className=" min-w-[500px]">
+                <div className="max-w-[500px] w-full p-4">
                     <h1 className="text-4xl text-center">Regístrate</h1>
                     <NavLink to="/signin">
                         <ArrowUturnLeftIcon className='w-6 h-6 text-base cursor-pointer' />

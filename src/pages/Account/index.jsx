@@ -6,9 +6,10 @@ function Account() {
     const currentUser = usuarios.find(usuario => usuario.online === true)
 
     return (
+        // 
         <Layout>
             <div className="flex items-center justify-center">
-                <div className="min-w-[500px] ">
+                <div className="max-w-[500px] w-full p-4">
                     <h1 className="text-4xl text-center">Account</h1>
                     <div className="flex flex-col my-4 py-3 ">
                         <p className="mb-2">Name: <span className="font-medium">{currentUser.name}</span></p>

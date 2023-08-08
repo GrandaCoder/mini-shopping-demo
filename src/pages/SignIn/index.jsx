@@ -28,7 +28,7 @@ function SignIn() {
     return (
         <Layout>
             <div className="flex items-center justify-center">
-                <div className="min-w-[500px] ">
+                <div className="max-w-[500px] w-full p-4">
                     <h1 className="text-4xl text-center">Bienvenido</h1>
                     <form action="" className="flex flex-col my-4 py-3 " onSubmit={validateUser}>
                         <div className="mb-3 w-full flex ">

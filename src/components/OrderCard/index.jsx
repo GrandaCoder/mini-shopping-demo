@@ -6,7 +6,7 @@ export const OrderCard = ({ title, price, image, handleDeleteProduct }) => {
     let renderIcon = handleDeleteProduct ? (<XCircleIcon className='w-6 h-6 cursor-pointer' onClick={() => handleDeleteProduct()} />) : (<></>)
     
     return (
-        <div className="flex justify-between items-center mb-3 w-full">
+        <div className="flex justify-between items-center mb-3 w-full border rounded-lg">
             <div className="flex items-center w-full">
                 <figure className="w-20 h-20">
                     <img className='object-cover w-full h-full rounded-lg' src={image} alt="" />

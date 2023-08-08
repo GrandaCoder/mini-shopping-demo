@@ -154,7 +154,7 @@ const Navbar = () => {
 
                 }
 
-                <li className='flex items-center gap-1'>
+                <li className='flex items-center gap-1'  onClick={() => setIsMenuOpen(false)}>
                     <ShoppingBagIcon className='w-6 h-6 text-black cursor-pointer' onClick={() => contexto.openCheckoutSideMenu()} /> {contexto.cartProducts.length}
                 </li>
             </ul>
