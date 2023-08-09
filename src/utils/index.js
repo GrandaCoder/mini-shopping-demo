@@ -50,3 +50,11 @@ export const setOnlineUser = (user, contexto) => {
     usuarios.find(usuario => usuario.email === user.email).online = true
     localStorage.setItem("usuarios", JSON.stringify(usuarios))
 }
+
+export const updateUser = (user, {newName, newEmail}) => {
+    const usuarios = getAllUsers()
+    const usuario = usuarios.find(usuario => usuario.email === user.email)
+    usuario.name = newName
+    usuario.email = newEmail
+    localStorage.setItem("usuarios", JSON.stringify(usuarios))
+}

@@ -9,6 +9,16 @@ export const ShoppingProvider = ({ children }) => {
     if (!usuarios) {
         localStorage.setItem("usuarios", JSON.stringify([]))
     }
+    // const persona = getCurrentUser()
+    // console.log(persona)
+    const [currentUser, setCurrentUser] = useState(null)
+
+    // useEffect(() => {
+    //     const personaActual = getCurrentUser()
+    //     setCurrentUser(personaActual) 
+    // },[])
+  
+
 
     // para controlar queinformacion mostrar si el usuario esta online
     const [online, setOnline] = useState(false)
@@ -104,7 +114,9 @@ export const ShoppingProvider = ({ children }) => {
                 filteredProducts,
                 filterByCategory,
                 online,
-                setOnline
+                setOnline,
+                currentUser,
+                setCurrentUser
             }}>
             {children}
         </ShoppingContext.Provider>

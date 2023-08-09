@@ -2,7 +2,7 @@ import { useRef, useContext } from "react"
 import { NavLink, useNavigate } from "react-router-dom"
 import Layout from "../../components/Layout"
 import { ShoppingContext } from "../../context"
-import { authenticateUser, setOnlineUser } from "../../utils"
+import { authenticateUser, getCurrentUser, setOnlineUser } from "../../utils"
 
 function SignIn() {
     const contexto = useContext(ShoppingContext);
@@ -19,6 +19,8 @@ function SignIn() {
         });
         if (usuario) {
             setOnlineUser(usuario, contexto);
+            const actualUser = getCurrentUser();
+            contexto.setCurrentUser(actualUser);
             navigate("/");
         } else {
             alert("Por favor verifique su email y contraseña");

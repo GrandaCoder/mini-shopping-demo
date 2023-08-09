@@ -3,7 +3,7 @@ import { useContext, useState } from 'react';
 import { ShoppingBagIcon, Bars3Icon } from '@heroicons/react/24/solid'
 import { ShoppingContext } from '../../context';
 
-import { exitCurrentUser, getCurrentUser } from '../../utils';
+import { exitCurrentUser } from '../../utils';
 import { useMediaQuery } from 'react-responsive';
 
 const Navbar = () => {
@@ -14,10 +14,7 @@ const Navbar = () => {
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
-
-
     const contexto = useContext(ShoppingContext)
-    const currentUser = getCurrentUser()
 
     const handleExitUser = () => {
         exitCurrentUser(contexto)
@@ -110,7 +107,7 @@ const Navbar = () => {
                 {
                     contexto.online &&
                     <li className='text-black/50'>
-                        {currentUser?.email}
+                        {contexto.currentUser?.email}
                     </li>
                 }
                 {
