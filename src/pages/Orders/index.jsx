@@ -13,8 +13,8 @@ function Orders() {
                     <h1 className="font-medium text-lg">My Orders</h1>
                 </div>
                 {contexto.order?.map((order, index) => (
-                    <Link to={`/orders/${index}`} key={index} className="max-w-[500px] w-full p-4">
-                        <OrdersCard totalPrice={order.totalPrice} totalProducts={order.totalProducts} date={order.date} />
+                    <Link to={`/orders/${index}`} key={index} className="max-w-[500px] w-full px-4">
+                        <OrdersCard totalPrice={order.totalPrice} totalProducts={order.totalProducts} date={typeof order.date === 'string' ? new Date(order.date) : order.date} />
                     </Link>
                 )
                 )}

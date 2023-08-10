@@ -23,6 +23,7 @@ function CheckoutSideMenu() {
                 totalProducts: contexto.cartProducts.length,
                 totalPrice: calculateTotalPrice(contexto.cartProducts)
             }
+            
             contexto.setOrder([...contexto.order, orderToAdd])
             contexto.setCartProducts([])
         }

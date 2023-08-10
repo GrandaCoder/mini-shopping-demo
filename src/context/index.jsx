@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import { agregarOrderToUser } from "../utils";
 
 export const ShoppingContext = createContext()
 
@@ -13,10 +14,7 @@ export const ShoppingProvider = ({ children }) => {
     // console.log(persona)
     const [currentUser, setCurrentUser] = useState(null)
 
-    // useEffect(() => {
-    //     const personaActual = getCurrentUser()
-    //     setCurrentUser(personaActual) 
-    // },[])
+
   
 
 
@@ -43,12 +41,19 @@ export const ShoppingProvider = ({ children }) => {
     //almacenamos los productos. 
     const [cartProducts, setCartProducts] = useState([])
 
+    
     //Shopping cart: order
     const [order, setOrder] = useState([])
 
-    // useEffect(() => {
-    //     console.log(order)
-    // }, [order])
+    useEffect(() => {
+        agregarOrderToUser(order)
+    }, [order])
+
+    useEffect(() => {
+        if(currentUser !== null) {
+            setOrder(currentUser.personalOrders)
+        }
+    },[currentUser])
 
     //checkout side menu
     const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false)

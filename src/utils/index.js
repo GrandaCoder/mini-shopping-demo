@@ -58,3 +58,13 @@ export const updateUser = (user, {newName, newEmail}) => {
     usuario.email = newEmail
     localStorage.setItem("usuarios", JSON.stringify(usuarios))
 }
+
+export const agregarOrderToUser = (order) => {
+    const currentUser = getCurrentUser()
+    if(currentUser){
+        const usuarios = getAllUsers()
+        usuarios.find(usuario => usuario?.email === currentUser.email).personalOrders = [...order]
+        localStorage.setItem("usuarios", JSON.stringify(usuarios))
+    }
+
+}
