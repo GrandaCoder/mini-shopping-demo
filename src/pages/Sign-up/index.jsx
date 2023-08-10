@@ -4,7 +4,7 @@ import Layout from '../../components/Layout'
 import { ArrowUturnLeftIcon } from '@heroicons/react/24/solid'
 import { User } from '../../models/user.class'
 import { ShoppingContext } from '../../context'
-import { findUser, registerUser } from '../../utils'
+import { findUser, getCurrentUser, registerUser } from '../../utils'
 
 
 export const Signup = () => {
@@ -31,6 +31,8 @@ export const Signup = () => {
         }
 
         registerUser(newUser, contexto);
+        const actualUser = getCurrentUser();
+        contexto.setCurrentUser(actualUser);
         navigate('/');
     };
 

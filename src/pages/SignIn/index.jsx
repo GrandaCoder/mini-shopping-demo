@@ -32,7 +32,7 @@ function SignIn() {
             <div className="flex items-center justify-center">
                 <div className="max-w-[500px] w-full p-4">
                     <h1 className="text-4xl text-center">Bienvenido</h1>
-                    <form action="" className="flex flex-col my-4 py-3 " onSubmit={validateUser}>
+                    <form action="" className="flex flex-col my-4 py-3 " onSubmit={(e) => validateUser(e)}>
                         <div className="mb-3 w-full flex ">
                             <label className="min-w-[100px]" htmlFor="email">Email:</label>
                             <input
