@@ -3,7 +3,7 @@ import { XCircleIcon } from "@heroicons/react/24/solid"
 import PropTypes from 'prop-types';
 
 export const OrderCard = ({ title, price, image, handleDeleteProduct }) => {
-    let renderIcon = handleDeleteProduct ? (<XCircleIcon className='w-6 h-6 cursor-pointer' onClick={() => handleDeleteProduct()} />) : (<></>)
+    let renderIcon = handleDeleteProduct ? (<XCircleIcon className='w-7 h-7 mx-2 cursor-pointer' onClick={() => handleDeleteProduct()} />) : (<></>)
     
     return (
         <div className="flex justify-between items-center mb-3 w-full border rounded-lg">
