@@ -8,7 +8,7 @@ export const OrdersCard = ({ totalPrice, totalProducts, date }) => {
     const anio = fecha.getFullYear();
 
     return (
-        <div className="flex justify-between items-center mb-3 border rounded-lg  p-2 bg-gradient-to-tr from-blue-500 to-purple-500 cursor-pointer mt-2 ">
+        <div className="flex justify-between items-center mb-2 border rounded-lg  p-2 bg-gradient-to-tr from-blue-500 to-purple-500 cursor-pointer mt-2 ">
             <div className="flex flex-col text-white text-left w-full">
                 <p className="text-base font-light flex justify-between ">
                     <span>Fecha</span>
